@@ -26,11 +26,11 @@ const {Temperament} = require('./src/db')
 
 // const getApiData = (() => { 
    
-  // axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
-  // .then(  (element) => { return element.data.map(e => e.temperament)})
-  // .then( response => { return new Set( response.data.flatMap( e => e.temperament && e.temperament.split(", ")))}
-  // )
-  // .then( temperaments => console.log(temperaments) )
+//   axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+//   .then(  (element) => { return element.data.map(e => e.temperament)})
+//   .then( response => { return new Set( response.data.flatMap( e => e.temperament && e.temperament.split(", ")))}
+//   )
+//   .then( temperaments => console.log(temperaments) )
 
 
 // ---------------------------------------------------------
@@ -86,7 +86,7 @@ const {Temperament} = require('./src/db')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-   
+  
   axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
   .then( response => { return new Set( response.data.flatMap( e => e.temperament && e.temperament.split(", ")))})
   .then( temperaments =>  temperaments.forEach( async temperament => {
