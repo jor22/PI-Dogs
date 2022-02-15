@@ -21,18 +21,16 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const {API_KEY} = process.env
 const axios = require('axios');
-const { response } = require('./src/app.js');
+const {Temperament} = require('./src/db')
 
 
-
-
-const getApiData = (() => { 
+// const getApiData = (() => { 
    
-  axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+  // axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
   // .then(  (element) => { return element.data.map(e => e.temperament)})
-  .then( response => { return new Set( response.data.flatMap( e => e.temperament && e.temperament.split(", ")))}
-  )
-  .then( temperaments => console.log(temperaments) )
+  // .then( response => { return new Set( response.data.flatMap( e => e.temperament && e.temperament.split(", ")))}
+  // )
+  // .then( temperaments => console.log(temperaments) )
 
 
 // ---------------------------------------------------------
@@ -45,8 +43,8 @@ const getApiData = (() => {
 //   }
 //  )
 //   return allData
-});
-getApiData()
+// });
+// getApiData()
 // -----------------------------------------------------------------------------------------------------
 
 // getApiData().then( (element) =>  element.data.flatMap(e => e.temperament).split(','))
@@ -88,6 +86,14 @@ getApiData()
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+   
+  axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+  .then( response => { return new Set( response.data.flatMap( e => e.temperament && e.temperament.split(", ")))})
+  .then( temperaments =>  temperaments.forEach( async temperament => {
+    await Temperament.create({
+      name: temperament ? temperament : 'No have temperament'
+    });
+  }));
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
