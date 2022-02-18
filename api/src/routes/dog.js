@@ -31,7 +31,7 @@ const getApiData = async () => {
 };
 
 router.get("/", async (req, res) => {
-  const { name } = req.query;
+    let { name } = req.query;
 
   const dogFromApi = await getApiData();
 
@@ -41,6 +41,17 @@ router.get("/", async (req, res) => {
   const dogFromDb = dataBaseData;
 
   const allDogs = [...dogFromApi, ...dogFromDb];
+
+  if(name){
+
+    console.log(name)  
+
+    const found = allDogs.filter((el) =>  el.name.toLowerCase().includes(name.toLowerCase()))
+    console.log(found)
+
+    return res.json(found)
+  } 
+
 
   res.json(allDogs);
 });
