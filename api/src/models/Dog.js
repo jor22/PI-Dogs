@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
     img: {
       type:DataTypes.STRING,
       allowNull: false,
-      defaultValue: "https://i.kym-cdn.com/photos/images/original/000/581/296/c09.jpg"
+      defaultValue: "https://wallpaperaccess.com/full/3845930.jpg"
      },
   },
   {

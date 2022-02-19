@@ -73,8 +73,20 @@ router.get("/:id", async (req, res) => {
 
   if (typeof id === "string" && id.length > 6) {
     let findDbDog = await Dog.findByPk(id, { include: Temperament });
-    console.log(findDbDog);
-    return res.json(findDbDog);
+    let  dogFromDb = findDbDog.map((el) => {
+      return {
+        id: el.id,
+        name: el.name, 
+        weight_max: el.weight_max,
+        weight_min: el.weight_min,
+        height_max: el.height_max,
+        height_min: el.height_min,
+        life_span: el.life_span  + ' years',
+        img: el.img,
+        temperaments: el.temperaments.map((i) => { return i.name;}).join(", "),
+      };
+    });
+    return res.json(dogFromDb);
   } else {
     let dataFromApi = await getApiData();
     let findApiDog = dataFromApi.find(
