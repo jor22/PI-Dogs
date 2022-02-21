@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 .container {
@@ -11,7 +11,8 @@
 }
 
 .textContainer{
-    padding: 14% 0;
+    font-size: 1.2em;
+    padding: 10% 0;
     width: 59vw;
 }
 
@@ -28,7 +29,7 @@
 }
 
 .btn{
-    background-color:rgb(73, 231, 170);
+    background-color:rgba(0,255,124,1);
     color: #181818fd;
     /* background-color:rgb(51, 167, 122);
     color: rgb(255, 248, 240); */
@@ -44,7 +45,7 @@
     cursor: pointer;
     /* background-color:rgb(73, 231, 170);
     color: #181818fd; */
-    background-color:rgb(22, 168, 112);
+    background-color:rgba(44,187,27,1);
     color: rgb(255, 248, 240);
     border: 3px solid black;
 }

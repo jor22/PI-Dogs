@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    min-width: 100vw;
+    height: 9vh;
+    flex-direction: row;
+    background: linear-gradient(90deg,
+    rgba(44,187,27,1) 14%,
+    rgba(0,255,124,1) 47%,
+    rgba(234,255,244,1) 75%, 
+    rgba(255,255,255,1) 97%);
+}
+.create{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+    margin-bottom: 3%; 
+}
+
+.createTitle{
+    color: rgb(240, 240, 240);
+    text-decoration: none;
+    font-size:2em;
+}

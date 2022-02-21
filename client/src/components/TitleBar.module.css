@@ -1,0 +1,23 @@
+
+.container{
+    display: flex;
+    min-width: 100vw;
+    height: 12vh;
+}
+
+.titleContainer{
+    display: flex;
+    flex-direction: row;
+    margin-left: 4%;
+    margin-right: 10%;
+}
+
+.title{
+    font-size:3.3em;
+    color: rgb(39, 39, 39);
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.icon{
+    height: 6vh;
+}
