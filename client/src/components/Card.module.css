@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid black;
+  border-radius: 4%;
+  max-width: 67%;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+.img {
+  border-top-left-radius: 4%;
+  border-top-right-radius: 4%;
+  max-height: 25vh;
+  min-width: 16vw;
+  max-width: 16vw;
+}
+
+.textContainer {
+  min-height: 13vh;
+}
+
+.name {
+  color: rgb(27, 27, 27);
+  font-size: 28px;
+}
+
+.temperaments {
+  color: rgba(44, 187, 27, 1);
+}
