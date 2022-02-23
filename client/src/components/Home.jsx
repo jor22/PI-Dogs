@@ -1,18 +1,33 @@
-import { React, useEffect } from "react";
+import { React, useEffect  , useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll } from "../redux/actions/actions";
 import styles from "./Home.module.css";
 import TitleBar from "./TitleBar";
 import NavBar from "./NavBar";
 import Dog from "./Card";
+import Pagination from "./Pagination";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { dogs } = useSelector((state) => state);
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const dogsPerPage =  8
+  
+  const pages = (pageNum) => {
+    setCurrentPage(pageNum)
+  }
+
   useEffect(() => {
     dispatch(getAll());
   }, []);
+  
+
+
+  let indexOfLastDogs= currentPage * dogsPerPage 
+  let indexOfirstDogs = indexOfLastDogs - dogsPerPage  
+  let currentDogs = dogs.slice( indexOfirstDogs , indexOfLastDogs) 
+
 
   return (
     <div className={styles.container}>
@@ -22,7 +37,7 @@ export default function Home() {
       </div>
 
       <div className={styles.dogContainer}>
-        {dogs && dogs.map((d) => <Dog 
+        {currentDogs && currentDogs.map((d) => <Dog 
          name={d.name}
          img={d.img}
          id={d.id}
@@ -30,6 +45,12 @@ export default function Home() {
          temperaments={d.temperaments}
         />)}
       </div>
+
+      <Pagination
+        amountPerPage={dogsPerPage}
+        totalAmount={dogs.length}
+        pageNumber={pages}
+      />
     </div>
   );
 }

@@ -1,9 +1,11 @@
 .card {
   display: flex;
+  background-color: rgba(255, 255, 255, 0.753);
   flex-direction: column;
   border: 3px solid black;
   border-radius: 4%;
-  max-width: 67%;
+  max-width: auto;
+  margin: 3% 7.3%;
 }
 .card:hover {
   transform: translateY(-2px);
@@ -11,13 +13,14 @@
 .img {
   border-top-left-radius: 4%;
   border-top-right-radius: 4%;
-  max-height: 25vh;
-  min-width: 16vw;
-  max-width: 16vw;
+  max-height: 19vh;
+  min-height: 17vh;
+  min-width: 16.56vw;
+  max-width: 16.56vw;
 }
 
 .textContainer {
-  min-height: 13vh;
+  min-height: 8vh;
 }
 
 .name {

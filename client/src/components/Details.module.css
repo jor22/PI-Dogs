@@ -1,0 +1,46 @@
+.cardContainer {
+  padding: 0% 30%;
+}
+.card {
+  display: flex;
+  background-color: rgba(75, 75, 75, 0.15);
+  flex-direction: column;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 4%;
+  padding: 0% 12%;
+}
+
+.img {
+  margin-top: 5%;
+  border: 3px solid black;
+  border-radius: 10%;
+  max-height: 33vh;
+  min-height: 33vh;
+  min-width: 22vw;
+  max-width: 22vw;
+}
+
+.infoContainer {
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 4%;
+  background-color: rgba(14, 167, 0, 0.486);
+}
+.info{
+    font-size: 20px;
+}
+
+.name {
+  color: rgb(27, 27, 27);
+  font-size: 40px;
+}
+
+.temperamentTitle{
+    font-size: 30px;
+
+}
+
+.temperaments {
+  font-size: 25px;
+  min-height: 7vh;
+  color: rgb(0, 0, 0);
+}

@@ -14,9 +14,7 @@
 .dogContainer{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: minmax(10px,auto);
-    gap: 1em;
-    /* background: none; */
-    /* align-items: center;
-    justify-content: center; */
+    padding:1% 10%;
+    gap:0.4em;
+    background: none;
 }

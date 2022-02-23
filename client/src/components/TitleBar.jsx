@@ -8,7 +8,7 @@ export default function TitleBar(){
  return (
     <div className={styles.container}>
     <div className ={styles.titleContainer}>
-       <Link to="/dog" style={{ textDecoration: "none" }}>
+       <Link to='/dog' style={{ textDecoration: "none" }}>
        <h1 className={styles.title}>Dog's World.<img src={icon} alt="" className={styles.icon}/></h1>
        </Link>
    </div>
