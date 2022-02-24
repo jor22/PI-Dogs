@@ -1,5 +1,6 @@
 .container{
     display: flex;
+    justify-content: space-between;
     min-width: 100vw;
     height: 9vh;
     flex-direction: row;
@@ -10,8 +11,6 @@
     rgba(255,255,255,1) 97%);
 }
 .create{
-    display: flex;
-    flex-direction: row;
     margin-left: 5%;
     margin-bottom: 3%; 
 }

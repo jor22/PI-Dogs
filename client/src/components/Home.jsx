@@ -1,6 +1,6 @@
 import { React, useEffect  , useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from "../redux/actions/actions";
+import { getAll , sort } from "../redux/actions/actions";
 import styles from "./Home.module.css";
 import TitleBar from "./TitleBar";
 import NavBar from "./NavBar";
@@ -21,8 +21,14 @@ export default function Home() {
   useEffect(() => {
     dispatch(getAll());
   }, []);
-  
 
+
+  function handleSort(e) {
+    e.preventDefault()
+    dispatch(sort(e.target.value))
+    setCurrentPage(1)
+    }
+  
 
   let indexOfLastDogs= currentPage * dogsPerPage 
   let indexOfirstDogs = indexOfLastDogs - dogsPerPage  
@@ -33,7 +39,9 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.header}>
         <TitleBar />
-        <NavBar />
+        <NavBar
+        handleSort={handleSort}   
+        />
       </div>
 
       <div className={styles.dogContainer}>
@@ -42,6 +50,8 @@ export default function Home() {
          img={d.img}
          id={d.id}
          key={d.id}
+         weight_max={d.weight_max}
+         weight_min={d.weight_min}
          temperaments={d.temperaments}
         />)}
       </div>

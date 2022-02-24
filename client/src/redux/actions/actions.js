@@ -1,5 +1,5 @@
 import  axios from 'axios';
-import { GET_ALL , GET_BY_ID } from './constants';
+import { GET_ALL , GET_BY_ID ,GET_BY_NAME } from './constants';
 
 export let getAll = () => {
     // return fetch("http://localhost:3001/dog")
@@ -12,9 +12,23 @@ export let getAll = () => {
 }
 
 export let getDogDetails = (id) => {
-   
     return async(dispatch) => {
         let response = await axios.get(`http://localhost:3001/dog/${id}`)
         dispatch({type:GET_BY_ID , payload: response.data})
+    }
+}
+
+export let getByName = (name) => {
+    return async (dispatch) => {
+        let response = await axios.get(`http://localhost:3001/dog?name=${name}`)
+        dispatch({type:GET_BY_NAME , payload: response.data})
+    }
+    
+}
+
+ export function sort(payload) {
+    return {
+      type: 'SORT',
+      payload,
     }
 }
