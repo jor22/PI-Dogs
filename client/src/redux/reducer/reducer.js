@@ -61,7 +61,7 @@ const rootReducer = (state = initialState, action) => {
       case "FILTER_BY_TEMP":
         const filterByTemp =
         action.payload === 'All' ? state.filterDogs : state.filterDogs.filter((d) => {
-         return d.temperaments.split(', ').incluedes(action.payload)
+         return d.temperaments.split(', ').includes(action.payload)
         })
       return {
         ...state,
