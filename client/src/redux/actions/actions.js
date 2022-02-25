@@ -46,4 +46,11 @@ export function filterByTemp(payload) {
       payload,
     };
   }
+
+  export let filterByOrigin = (origin) => {
+    return async (dispatch) => {
+        let response = await axios.get(`http://localhost:3001/dog?origin=${origin}`);
+        dispatch({ type: "GET_BY_ORIGIN", payload: response.data });
+      };
+  }
   

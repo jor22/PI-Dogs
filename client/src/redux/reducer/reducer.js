@@ -32,6 +32,13 @@ const rootReducer = (state = initialState, action) => {
         temperaments: action.payload,
       };
 
+      case "GET_BY_ORIGIN":
+      return {
+        ...state,
+        filterDogs: action.payload,
+        dogs: action.payload,
+      };
+
     case "SORT":
       var sorted;
       if (action.payload.length === 2) {

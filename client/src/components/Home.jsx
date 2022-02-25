@@ -1,6 +1,6 @@
 import { React, useEffect  , useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByTemp, getAll , sort } from "../redux/actions/actions";
+import { filterByTemp, getAll , sort , filterByOrigin} from "../redux/actions/actions";
 import styles from "./Home.module.css";
 import TitleBar from "./TitleBar";
 import NavBar from "./NavBar";
@@ -22,10 +22,17 @@ export default function Home() {
     dispatch(getAll());
   }, []);
 
+
+  function handleOrigin(e){
+      e.preventDefault()
+      dispatch(filterByOrigin(e.target.value))
+      setCurrentPage(1)
+  }
+
   function handleTemp(e){
       e.preventDefault()
-      console.log(e.target.value)
       dispatch(filterByTemp(e.target.value))
+      setCurrentPage(1)
   }
 
   function handleSort(e) {
@@ -46,7 +53,8 @@ export default function Home() {
         <TitleBar />
         <NavBar
         handleSort={handleSort} 
-        handleTemp={handleTemp}  
+        handleTemp={handleTemp}
+        handleOrigin={handleOrigin}  
         />
       </div>
 

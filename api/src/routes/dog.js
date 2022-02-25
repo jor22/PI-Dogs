@@ -29,14 +29,16 @@ const getApiData = async () => {
 };
 
 router.get("/", async (req, res) => {
-  let { name } = req.query;
+  let { origin }  = req.query;
+   let { name } = req.query;
 
   const dogFromApi = await getApiData();
+
   let dataBaseData = await Dog.findAll({
     include: Temperament,
   });
 
-   let dogFromDb = dataBaseData.map((el) => {
+  let dogFromDb = dataBaseData.map((el) => {
     return {
       id: el.id,
       name: el.name, 
@@ -50,7 +52,18 @@ router.get("/", async (req, res) => {
     };
   });
   
-  const allDogs = [...dogFromApi,...dogFromDb];
+  let allDogs = [...dogFromApi,...dogFromDb];
+
+
+  if(origin){
+    console.log('Origen por ' , origin)
+    if(origin === "DataBase"){
+      allDogs = [...dogFromDb]
+      return allDogs
+    }
+    allDogs = [...dogFromApi]
+    return allDogs
+  }
 
   if (name) {
     console.log('nombre por query: ',name);
@@ -72,21 +85,21 @@ router.get("/:id", async (req, res) => {
   console.log(id);
 
   if (typeof id === "string" && id.length > 6) {
+
     let findDbDog = await Dog.findByPk(id, { include: Temperament });
-    let  dogFromDb = findDbDog.map((el) => {
-      return {
-        id: el.id,
-        name: el.name, 
-        weight_max: el.weight_max,
-        weight_min: el.weight_min,
-        height_max: el.height_max,
-        height_min: el.height_min,
-        life_span: el.life_span  + ' years',
-        img: el.img,
-        temperaments: el.temperaments.map((i) => { return i.name;}).join(", "),
-      };
+    console.log("log del FindForId ", findDbDog)
+    
+    return res.json({
+      id: findDbDog.id,
+      name: findDbDog.name, 
+      weight_max:findDbDog.weight_max,
+      weight_min:findDbDog.weight_min,
+      height_max:findDbDog.height_max,
+      height_min:findDbDog.height_min,
+      life_span:findDbDog.life_span  + ' years',
+      img:findDbDog.img,
+      temperaments:findDbDog.temperaments.map((i) => { return i.name;}).join(", "),
     });
-    return res.json(dogFromDb);
   } else {
     let dataFromApi = await getApiData();
     let findApiDog = dataFromApi.find(
