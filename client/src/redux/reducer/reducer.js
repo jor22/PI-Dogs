@@ -1,6 +1,8 @@
 let initialState = {
   dogs: [],
+  filterDogs: [],
   dog: [],
+  temperaments: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -8,6 +10,7 @@ const rootReducer = (state = initialState, action) => {
     case "GET_ALL":
       return {
         ...state,
+        filterDogs: action.payload,
         dogs: action.payload,
       };
 
@@ -21,6 +24,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         dogs: action.payload,
+      };
+
+      case "GET_TEMPERAMENTS":
+      return {
+        ...state,
+        temperaments: action.payload,
       };
 
     case "SORT":
@@ -48,6 +57,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogs: sorted,
       };
+
+      case "FILTER_BY_TEMP":
+        const filterByTemp =
+        action.payload === 'All' ? state.filterDogs : state.filterDogs.filter((d) => {
+         return d.temperaments.split(', ').incluedes(action.payload)
+        })
+      return {
+        ...state,
+        dogs: filterByTemp,
+      }
 
     default:
       return state;

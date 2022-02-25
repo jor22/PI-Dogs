@@ -1,6 +1,6 @@
 import { React, useEffect  , useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll , sort } from "../redux/actions/actions";
+import { filterByTemp, getAll , sort } from "../redux/actions/actions";
 import styles from "./Home.module.css";
 import TitleBar from "./TitleBar";
 import NavBar from "./NavBar";
@@ -22,6 +22,11 @@ export default function Home() {
     dispatch(getAll());
   }, []);
 
+  function handleTemp(e){
+      e.preventDefault()
+      console.log(e.target.value)
+      dispatch(filterByTemp(e.target.value))
+  }
 
   function handleSort(e) {
     e.preventDefault()
@@ -40,7 +45,8 @@ export default function Home() {
       <div className={styles.header}>
         <TitleBar />
         <NavBar
-        handleSort={handleSort}   
+        handleSort={handleSort} 
+        handleTemp={handleTemp}  
         />
       </div>
 
