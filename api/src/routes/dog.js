@@ -51,32 +51,21 @@ router.get("/", async (req, res) => {
       temperaments: el.temperaments.map((i) => { return i.name;}).join(", "),
     };
   });
-  
-  let allDogs = [...dogFromApi,...dogFromDb];
 
-
-  if(origin){
-    console.log('Origen por ' , origin)
-    if(origin === "DataBase"){
-      allDogs = [...dogFromDb]
-      return allDogs
-    }
-    allDogs = [...dogFromApi]
-    return allDogs
-  }
+ 
+  const allDogs = origin? origin ==="DataBase"? [...dogFromDb] : origin ==="Api" ?[...dogFromApi]:[...dogFromDb,...dogFromApi] :[...dogFromDb,...dogFromApi]
 
   if (name) {
     console.log('nombre por query: ',name);
 
-    console.log('log de all dog  dentro del if: ',allDogs[1],allDogs[172])
-
+    // console.log('log de all dog  dentro del if: ',allDogs[1],allDogs[172])
     const found = allDogs.filter((el) =>el.name && el.name.toLowerCase().includes(name.toLowerCase()));
     console.log('respuesta del filter: ',found);
 
     return res.json(found);
   }
 
-  res.json(allDogs);
+  return res.json(allDogs);
 });
 
 router.get("/:id", async (req, res) => {

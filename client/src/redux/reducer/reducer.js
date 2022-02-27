@@ -75,6 +75,13 @@ const rootReducer = (state = initialState, action) => {
         dogs: filterByTemp,
       }
 
+      case "FILTER_BY_ORIGIN":
+        return {
+          ...state,
+          filterDogs: action.payload,
+          dogs: action.payload,
+        };
+
     default:
       return state;
   }
