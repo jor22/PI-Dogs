@@ -25,6 +25,15 @@ export let getByName = (name) => {
   };
 };
 
+export function createDog(inputs) {
+  return async function (dispatch) {
+    const newDog = await axios.post( 'http://localhost:3001/dog', inputs )
+    console.log( " log from actions" , newDog)
+    return newDog
+  }
+}
+
+
 export function sort(payload) {
   return {
     type: "SORT",
