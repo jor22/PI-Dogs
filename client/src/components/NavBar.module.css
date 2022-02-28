@@ -11,7 +11,8 @@
     rgba(255,255,255,1) 97%);
 }
 .create{
-    margin-left: 5%;
+    margin-left: 10%;
+    margin-right: 8%;
     margin-bottom: 3%; 
 }
 
@@ -19,4 +20,20 @@
     color: rgb(240, 240, 240);
     text-decoration: none;
     font-size:2em;
+}
+
+.createTitle:hover{
+    text-decoration:underline;
+}
+
+.filterContainer{
+    padding-top: 1.5%;
+}
+
+.filter{
+    font-size: calc(0.7em + 0.5vw);
+    height: 47%;
+    width:  100%;
+    border: 2px solid ;
+    border-radius: 8px;
 }
