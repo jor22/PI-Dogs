@@ -74,17 +74,9 @@ export default function CreateNewDog() {
 
     if(Object.keys(error).length === 0){
        dispatch(createDog(input));
-       setInput({
-        name: "",
-        height_min: "",
-        height_max: "",
-        weight_min: "",
-        weight_max: "",
-        life_span: "",
-        temperament: [],
-      });
+       alert("Perro Creado con exito")
     }else{
-        return;
+        alert("Completar sin errores")
     }
   }
 
@@ -108,7 +100,13 @@ export default function CreateNewDog() {
             <label className={styles.label} htmlFor="name">
               Name:
             </label>
-            <input type="text" name="name" onChange={handleChange} className={styles.inputName}></input>
+            <input 
+            type="text" 
+            name="name" 
+            onChange={handleChange} 
+            className={styles.inputName}
+            required>
+            </input>
           </div>
           </div>
 
@@ -219,17 +217,15 @@ export default function CreateNewDog() {
             </select>
           </div>
 
+         <button className={styles.btn} type="submit">
+            Create DOG!
+        </button>
+
         </form>
 
         <span className={styles.addTemperament}>
             {input.temperament?.map((temperament) => `${temperament} , `)}
-        </span>
-     
-
-        <button className={styles.btn} type="submit">
-            Create DOG!
-        </button>
-     
+         </span>
 
       </div>
       </div>

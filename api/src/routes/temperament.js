@@ -4,13 +4,13 @@ const { Temperament } = require('../db.js')
 
 
 
-router.get('/' , async (req,res) => {    
-
+router.get('/' , async (req,res,next) => {  
+ try{
     let temperaments = await Temperament.findAll()
-    // temperaments = temperaments.map((e) => {
-    //     return e.name
-    // });
     res.json(temperaments)
+ }catch(error){
+     next(error)
+ }
 })
 
 
