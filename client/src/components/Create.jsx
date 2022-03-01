@@ -5,30 +5,30 @@ import TitleBar from "./TitleBar";
 import patita from "../assests/huella.png";
 import styles from "./Create.module.css";
 
-export default function Activity() {
+export default function CreateNewDog() {
   const dispatch = useDispatch();
   const temperaments = useSelector((state) => state.temperaments);
 
   const validate = (input) => {
     let error = {};
 
-    if (!input.name) {
-      error.name = "Dog Name or breed  is required";
+    if (!input.name.trim()) {
+      error.name = " * Dog Name or breed  is required";
     }
-    if (!input.weight_max) {
-      error.weight_max = "Dog weigth max is required";
+    if (!input.weight_max.trim()) {
+      error.weight_max = " * Dog weight max is required";
     }
-    if (!input.weight_min) {
-      error.weight_min = "Dog weigth min is required";
+    if (!input.weight_min.trim()) {
+      error.weight_min = " * Dog weight min is required";
     }
-    if (!input.height_max) {
-      error.height_max = "Dog heigth max is required";
+    if (!input.height_max.trim()) {
+      error.height_max = " * Dog height max is required";
     }
-    if (!input.height_min) {
-      error.height_min = "Dog heigth min is required";
+    if (!input.height_min.trim()) {
+      error.height_min = " * Dog height min is required";
     }
-    if (!input.life_span) {
-      error.life_span = "Dog life span is required";
+    if (!input.life_span.trim()) {
+      error.life_span = " * Dog life span is required";
     }
 
     return error;
@@ -56,29 +56,36 @@ export default function Activity() {
         [e.target.name]: e.target.value,
       })
     );
-
     setInput({
       ...input,
-      [e.target.name]:
-        e.target.name === "temperament"
-          ? [...input.temperament, e.target.value]
-          : e.target.value,
+      [e.target.name]:e.target.name === "temperament"? [...input.temperament, e.target.value]: e.target.value,
     });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("input handleSubmit", e);
-    dispatch(createDog(input));
-    setInput({
-      name: "",
-      height_min: "",
-      height_max: "",
-      weight_min: "",
-      weight_max: "",
-      life_span: "",
-      temperament: [],
-    });
+    
+    setError(
+        validate({
+          ...input,
+          [e.target.name]: e.target.value,
+        })
+      );
+
+    if(Object.keys(error).length === 0){
+       dispatch(createDog(input));
+       setInput({
+        name: "",
+        height_min: "",
+        height_max: "",
+        weight_min: "",
+        weight_max: "",
+        life_span: "",
+        temperament: [],
+      });
+    }else{
+        return;
+    }
   }
 
   console.log("input", input);
@@ -87,21 +94,30 @@ export default function Activity() {
   return (
     <div className={styles.container}>
       <TitleBar />
-      <div className={styles.card}>
-        <form onSubmit={handleSubmit}>
-          <h1 className={styles.title}>
-            Create New Dog <img src={patita} className={styles.patita} />
-          </h1>
+      <div className={styles.cardContainer}>
 
+        <h1 className={styles.title}>
+          Create New Dog <img src={patita} className={styles.patita} />
+        </h1>
+
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit}>
+            
           <div className={styles.form}>
+          <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="name">
               Name:
             </label>
-            <input type="text" name="name" onChange={handleChange}></input>
-            {error.name && <p className={styles.showError}>{error.name}</p>}
+            <input type="text" name="name" onChange={handleChange} className={styles.inputName}></input>
+          </div>
           </div>
 
+        <span>
+            {error.name && <span className={styles.showError}>{error.name}</span>}
+        </span>
+    
           <div className={styles.form}>
+          <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="weight_max">
               Weight Max:
             </label>
@@ -109,12 +125,17 @@ export default function Activity() {
               type="text"
               name="weight_max"
               onChange={handleChange}
+              className={styles.inputWeightmax}
             ></input>
-            {"kg"}
-            {error.weight_max && <p className={styles.showError}>{error.weight_max}</p> }
+            <span>{"kg"}</span>
+          </div>
           </div>
 
-          <div className={styles.form}>
+          <span>
+          {error.weight_max && <span className={styles.showError}>{error.weight_max}</span>}
+          </span>
+    
+          <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="weight_min">
               Weight Min:
             </label>
@@ -122,12 +143,17 @@ export default function Activity() {
               type="text"
               name="weight_min"
               onChange={handleChange}
+              className={styles.inputWeightmin}
             ></input>
-            {"kg"}
-            {error.weight_min && <p className={styles.showError}>{error.weight_min}</p>}
+            <span>{"kg"}</span>
           </div>
 
-          <div className={styles.form}>
+          <span>
+            {error.weight_min && <span className={styles.showError}> {error.weight_min} </span>}
+          </span>
+         
+
+          <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="Peso">
               Height Max:
             </label>
@@ -135,12 +161,16 @@ export default function Activity() {
               type="text"
               name="height_max"
               onChange={handleChange}
+              className={styles.inputHeightmax}
             ></input>
-            {"Cm"}
-            {error.height_max && <p className={styles.showError}>{error.height_max}</p>}
+            <span>{"Cm"}</span>
           </div>
 
-          <div className={styles.form}>
+          <span>
+            {error.height_max && <span className={styles.showError}>{error.height_max}</span> }
+          </span>
+
+          <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="height_min">
               Height Min:
             </label>
@@ -148,24 +178,38 @@ export default function Activity() {
               type="text"
               name="height_min"
               onChange={handleChange}
+              className={styles.inputHeightmin}
             ></input>
-            {"Cm"}
-            {error.height_min && <p className={styles.showError}>{error.height_min}</p>}
+            <span>{"Cm"}</span>
           </div>
 
-          <div className={styles.form}>
+          
+          <span>
+            {error.height_min && <span className={styles.showError}>{error.height_min}</span> }
+          </span>
+
+          <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="life_span">
               Life Span:
             </label>
-            <input type="text" name="life_span" onChange={handleChange}></input>
-            {"Years"}
-            {error.life_span && <p className={styles.showError}>{error.life_span}</p>}
+            <input 
+            type="text" 
+            name="life_span" 
+            onChange={handleChange}
+            className={styles.inputLifeSpan}
+            ></input>
+            <span>{"Years"}</span>
           </div>
 
-          <div className={styles.form}>
+          <span>
+            {error.life_span && <span className={styles.showError}>{error.life_span}</span> }
+          </span>
+
+
+          <div className={styles.inputContainer}>
             <label className={styles.label} html="Temperament"></label>
-            <select name="temperament" onChange={handleChange}>
-              <option value="">Temperaments</option>
+            <select name="temperament"  onChange={handleChange} className={styles.select}>
+              <option value="No have temperament">Temperaments</option>
               {temperaments &&
                 temperaments.map((temperament) => (
                   <option key={temperament.id} value={temperament.name}>
@@ -173,21 +217,21 @@ export default function Activity() {
                   </option>
                 ))}
             </select>
-            {error.temperament && <p className={styles.showError}>{error.temperament}</p>}
           </div>
 
-          <ul>
-            <li className={styles.ul}>
-              {input.temperament?.map((temperament) => `${temperament} | `)}
-            </li>
-          </ul>
-
-          <div>
-            <button className={styles.btn} type="submit">
-              Create DOG!
-            </button>
-          </div>
         </form>
+
+        <span className={styles.addTemperament}>
+            {input.temperament?.map((temperament) => `${temperament} , `)}
+        </span>
+     
+
+        <button className={styles.btn} type="submit">
+            Create DOG!
+        </button>
+     
+
+      </div>
       </div>
     </div>
   );

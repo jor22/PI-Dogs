@@ -31,7 +31,7 @@ export default function SearchBar() {
           }
         }}
         onChange={(e) => handleChange(e)}
-        placeholder="Search by Breeds."
+        placeholder="Search Breeds."
       />
       <button
        className={styles.button}

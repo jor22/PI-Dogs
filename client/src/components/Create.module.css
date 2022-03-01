@@ -1,0 +1,97 @@
+.cardContainer {
+    padding: 0% 35%;
+}
+
+
+.formContainer {
+    background-color: rgba(14, 167, 0, 0.486);
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 3vh;
+}
+
+.title{
+    font-size: 4vh;
+}
+
+.form{
+}
+
+.inputContainer{
+    display: flex;
+}
+
+
+input{
+ margin-left: 0.5em;
+ font-size: calc(0.6em + 0.3vw);
+ height: 3vh;
+ width:10vh;    
+ border-radius: 8px;
+}
+
+.inputName{
+    margin-left: 2.8em;
+}
+
+.inputWeightmax{
+    margin-left: 0.4em;
+}
+
+.inputWeightmin{
+    margin-left: 0.6em;
+}
+
+.inputHeightmax{
+    margin-left: 0.6em ;
+}
+
+.inputHeightmin{
+    margin-left: 0.8em ;
+}
+.inputLifeSpan{
+    margin-left: 1.4em 
+}
+
+.showError{
+    color:rgb(160, 0, 0);
+    font-size: 2vh;
+}
+
+.select{
+    font-size: calc(0.5em + 0.3vw);
+    height: 50%;
+    width:  90%;
+    border: 2px solid ;
+    border-radius: 8px;
+}
+option{
+    height: 2%;
+}
+
+.addTemperament{
+    font-size: 0.8em;
+}
+
+.btn{
+    background-color:rgb(255, 255, 255);
+    color: #181818fd;
+    border-radius: 20px;
+    width: 5vw;
+    padding: 1%;
+    margin: 2%;
+    font-size: 0.7em;
+    font-weight: bold;
+    border: 2px solid ;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: rgb(200, 200, 200);
+}
